@@ -1,4 +1,6 @@
 `use strict`;
+let key = config.MY_API_TOKEN;
+// console.log(key);
 let openingCountry = document.querySelector(".country"),
   openingCity = document.querySelector(".city"),
   lastUpdatedDay = document.querySelector(`.day-update`),
@@ -44,9 +46,16 @@ let forecastLetter = [];
 let forecastNextHour = [];
 let forecastTemperature = [];
 
+function forecastReset() {
+  forecastNextTime = [];
+  forecastNumber = [];
+  forecastLetter = [];
+  forecastNextHour = [];
+  forecastTemperature = [];
+}
 function fetchCurrentLocation() {
   fetch(
-    `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=e0a94e96a35ab53298c6e02bbfce980b&units=metric`
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`
   )
     .then((response) => response.json())
     .then((data) => {
@@ -70,8 +79,8 @@ function fetchCurrentLocation() {
         // console.log(e);
         // console.log(e.dt_txt);
 
-        let getYearArray = Number(e.dt_txt.slice(0, 4));
-        let getMonthArray = Number(e.dt_txt.slice(5, 7));
+        // let getYearArray = Number(e.dt_txt.slice(0, 4));
+        // let getMonthArray = Number(e.dt_txt.slice(5, 7));
         let getDateArray = Number(e.dt_txt.slice(8, 10));
         let getHourArray = Number(e.dt_txt.slice(10, 13));
         // console.log(getHourArray);
@@ -144,7 +153,10 @@ function fetchCurrentLocation() {
             forecastNextTime.push(e.dt_txt.slice(10, 16).trim());
             // console.log(forecastNextTime);
             // console.log(e);
+            // console.log(forecastTemperature);
+
             forecastTemperature.push(e.main.temp);
+
             // console.log(forecastTemperature);
 
             forecastNumber.push(e.weather[0].icon.slice(0, 2));
@@ -162,6 +174,8 @@ function fetchCurrentLocation() {
 
             // console.log(forecastNextTime);
           });
+          forecastReset();
+
           // console.log(fiveArray);
           // console.log(i);
           // console.log(dataArray.length);
@@ -180,7 +194,7 @@ function fetchCurrentLocation() {
 function fetchSearchLocation() {
   let searchedLocation = searchBox.value.trim().toLowerCase();
   fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${searchedLocation}&limit=1&appid=e0a94e96a35ab53298c6e02bbfce980b`
+    `http://api.openweathermap.org/geo/1.0/direct?q=${searchedLocation}&limit=1&appid=${key}`
   )
     .then((response) => response.json())
     .then((data) => {
