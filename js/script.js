@@ -124,7 +124,7 @@ function fetchCurrentLocation() {
           // console.log(numberIcon);
           // console.log(iconday);
 
-          iconImgTemperature.src = `http://openweathermap.org/img/wn/${numberIcon}${iconday}@2x.png`;
+          iconImgTemperature.src = `https://openweathermap.org/img/wn/${numberIcon}${iconday}@2x.png`;
 
           // console.log(e);
           let forecastNextLetter;
@@ -165,7 +165,7 @@ function fetchCurrentLocation() {
               timeForecast[j].innerText = forecastNextTime[j];
               iconForecast[
                 j
-              ].src = `http://openweathermap.org/img/wn/${forecastNumber[j]}${forecastLetter[j]}@2x.png`;
+              ].src = `https://openweathermap.org/img/wn/${forecastNumber[j]}${forecastLetter[j]}@2x.png`;
               temperatureForecast[j].innerText = forecastTemperature[j];
             }
 
