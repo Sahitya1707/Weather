@@ -112,11 +112,11 @@ function fetchCurrentLocation() {
           // console.log(e);
           let iconday;
           // console.log(getHourArray);
-
-          // console.log(hoursUpdated);
-          if (getHourArray > 6 && getHourArray <= 18) {
+          //
+          console.log(hoursUpdated);
+          if (hoursUpdated > 6 && hoursUpdated <= 18) {
             iconday = "d";
-          } else if (getHourArray > 18 || getHourArray <= 6) {
+          } else if (hoursUpdated > 18 || hoursUpdated <= 6) {
             iconday = "n";
           }
           let numberIcon = e.weather[0].icon.slice(0, 2);
